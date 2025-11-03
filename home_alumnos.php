@@ -14,10 +14,6 @@
             <nav class="navbar">
                 <h1 class="tituloHeader">Home</h1>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Test</a></li>
-                    <li><a href="crud_alumnos.php">Alumnos</a></li>
-                    <li><a href="#">Maestros</a></li>
                     <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
@@ -33,11 +29,71 @@
 
 
     <div class="perfil-info">
-        <p><strong>Nombre:</strong> Nombre del alumno</p>
-        <br>
-        <p><strong>Matrícula:</strong> al019238456</p>
-        <br>
-        <p><strong>Correo electrónico:</strong> alumno@gmail.com</p>
+        <?php
+            $servername = "db";
+            $username   = "usuario";
+            $password   = "12345";
+            $dbname     = "socialService";
+
+            // Crear conexión
+            $connection = new mysqli($servername, $username, $password, $dbname);
+            if ($connection->connect_error) {
+                die("Error de conexión: " . $connection->connect_error);
+            }
+
+            // MATRÍCULA del alumno a mostrar (puedes cambiarla o tomarla de sesión)
+            $matricula = "MD2837474"; 
+
+            // Consulta de un solo alumno
+            $queried = false;
+            try {
+                $sql = "SELECT nombres, apellidos, matricula, email FROM alumnos WHERE matricula = ?";
+                $stmt = $connection->prepare($sql);
+                if ($stmt) {
+                    $stmt->bind_param("s", $matricula);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $queried = true;
+                }
+            } catch (mysqli_sql_exception $e) {
+                // Fall back to singular table name 'alumno' if 'alumnos' doesn't match schema
+                try {
+                    $sql = "SELECT nombres, apellidos, matricula, email FROM alumno WHERE matricula = ?";
+                    $stmt = $connection->prepare($sql);
+                    if ($stmt) {
+                        $stmt->bind_param("s", $matricula);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $queried = true;
+                    }
+                } catch (mysqli_sql_exception $e2) {
+                    // both attempts failed; log error and show friendly message
+                    error_log("DB query failed: " . $e2->getMessage());
+                    echo "<p>Error al consultar los datos del alumno. Consulte al administrador.</p>";
+                    $queried = false;
+                }
+            }
+
+            if ($queried && $result && $result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+
+                echo "<p><strong>Matrícula:</strong> " . htmlspecialchars($row['matricula']) . "</p>";
+                echo "<br>";
+                echo "<p><strong>Nombre:</strong> " 
+                    . htmlspecialchars($row['nombres']) . " " 
+                    . htmlspecialchars($row['apellidos']) . "</p>";
+
+                echo "<br>";
+                echo "<p><strong>Email:</strong> " . htmlspecialchars($row['email']) . "</p>";
+            } elseif ($queried) {
+                echo "<p>No se encontró el alumno con la matrícula especificada.</p>";
+            }
+
+            if (isset($stmt) && $stmt) {
+                $stmt->close();
+            }
+            $connection->close();
+        ?>
     </div>
 
 

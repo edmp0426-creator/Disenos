@@ -17,10 +17,9 @@
             <nav class="navbar">
                 <h1 class="tituloHeader">Crud Alumnos</h1>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="home_admi.php" class="active">Home</a></li>
                     <li><a href="#">Test</a></li>
-                    <li><a href="crud_alumnos.php">Alumnos</a></li>
-                    <li><a href="#">Maestros</a></li>
+                    <li><a href="crud_maestros.php">Maestros</a></li>
                     <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
@@ -30,7 +29,7 @@
     <div class="container">
             <h2 >Lista de Alumnos</h2>
             <br>
-            <button class="btn-agregar"><a class="agregar" href="alumnos/agregar_alumoos.php">Agregar Alumno</a></button>
+            <button class="btn-agregar"><a class="agregar" href="agregar_alumoos.php">Agregar Alumno</a></button>
             <br>
             <table class="tabla-alumnos">
                 <thead>
@@ -80,8 +79,8 @@
                             <td>$row[contrasena]</td>
                             <td>$row[creat_at]</td>
                             <td>
-                                <button class='btn-editar' href='/DISENO/editar_Alumno.php?id=$row[id]'>Editar</button>
-                                <button class='btn-eliminar' href='/DISENO/eliminar_Alumno.php?id=$row[id]'>Eliminar</button>
+                                <a class='btn-editar' href='editar_Alumno.php?id=$row[id]'>Editar</a>
+                                <a class='btn-eliminar' href='eliminar_Alumno.php?id=$row[id]'>Eliminar</a>
                             </td>
                         </tr>
                         ";

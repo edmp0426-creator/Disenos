@@ -1,3 +1,66 @@
+<?php
+// Aquí iría el código PHP para obtener y mostrar los alumnos desde la base de datos
+$servername = "db";
+$username = "usuario";
+$password = "12345";
+$dbname = "socialService";
+
+// Crear conexión
+$connection = new mysqli($servername, $username, $password, $dbname);
+
+$matricula = "";
+$nombres = "";
+$apellidos = "";
+$materia = "";
+$email = "";
+$contrasena = "";
+
+$errorMessage = "";
+$successMessage = "";
+
+if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
+    $matricula = $_POST['matricula'];
+    $nombres = $_POST['nombres'];
+    $apellidos = $_POST['apellidos'];
+    $materia = $_POST['materia'];
+    $email = $_POST['email'];
+    $contrasena = $_POST['password'];
+
+    do {
+        if ( empty($matricula) || empty($nombres) || empty($apellidos) || empty($materia) || empty($email) || empty($contrasena) ) {
+            $errorMessage = "Todos los campos son obligatorios";
+            break;
+        }
+
+        // Agregar nuevo maestro a la base de datos
+
+        $sql = "INSERT INTO maestro (matricula, nombres, apellidos, materia, email, contrasena) " .
+                "VALUES ('$matricula', '$nombres', '$apellidos', '$materia', '$email', '$contrasena')";
+        $result = $connection->query($sql);
+
+        if (!$result) {
+            $errorMessage = "Consulta fallida: " . $connection->error;
+            break;
+        }
+
+        $matricula = "";
+        $nombres = "";
+        $apellidos = "";
+        $materia = "";
+        $email = "";
+        $contrasena = "";
+
+        $successMessage = "Maestro agregado correctamente";
+
+        header("location: crud_maestros.php");
+        exit;
+
+    }while (false);
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,23 +93,46 @@
             <form method="post">
                 <img src="user_logo.jpg" alt="Logo" class="logo">
                 <h2>Registrar Maestro</h2>
-                <h3>Matricula</h3>
-                <input type="text" name="matricula" placeholder="Matricula" required>
-                <h3>Nombres(s)</h3>
-                <input type="text" name="nombres" placeholder="Nombre(s)" required>
-                <h3>Apellidos</h3>
-                <input type="text" name="apellidos" placeholder="apellidos" required>
-                <h3>Materia que Imparte</h3>
-                <input type="text" name="apellidos" placeholder="apellidos" required>
-                <h3>Email</h3>
-                <input type="email" name="email" placeholder="Email" required>
-                <h3>Contraseña</h3>
-                <input type="password" name="password" placeholder="Contraseña" required>
-                <h3>Escriba nuevamente la contraseña</h3>
-                <input type="password" name="password" placeholder="Contraseña" required>
                 
-                <button type="submit" class="btn">Registrar</button>
-                <button type="submit" class="btn">Cancelar</button>
+                <?php
+                if ( !empty($errorMessage) ) {
+                    echo "
+                    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                        <strong>$errorMessage</strong>
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>
+                    ";
+                }
+                ?>
+
+                <h3>Matricula</h3>
+                <input type="text" name="matricula" placeholder="Matricula" value = "<?php echo $matricula; ?>">
+                <h3>Nombres(s)</h3>
+                <input type="text" name="nombres" placeholder="Nombre(s)" value = "<?php echo $nombres; ?>">
+                <h3>Apellidos</h3>
+                <input type="text" name="apellidos" placeholder="Apellidos" value = "<?php echo $apellidos; ?>">
+                <h3>Materia que Imparte</h3>
+                <input type="text" name="materia" placeholder="Materia que Imparte" value = "<?php echo $materia; ?>">
+                <h3>Email</h3>
+                <input type="email" name="email" placeholder="Email" value = "<?php echo $email; ?>">
+                <h3>Contraseña</h3>
+                <input type="password" name="password" placeholder="Contraseña" value = "<?php echo $contrasena; ?>">
+                
+                <?php
+                    if ( !empty($successMessage) ) {
+                        echo "
+                        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <strong>$successMessage</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>
+                        ";
+                    }
+                ?>
+
+                <div class="button-group">
+                    <button type="submit" class="btn">Registrar</button>
+                    <a href="crud_maestros.php" class="btn btn-cancel">Cancelar</a>
+                </div>
 
 
             </form>

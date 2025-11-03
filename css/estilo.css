@@ -146,8 +146,14 @@ input {
     margin-bottom: 20px;
 }
 
-button {
-    width: 100%;
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn, .btn-cancel {
+    flex: 1;
     padding: 12px;
     background: #008C72;
     border-radius: 6px;
@@ -156,10 +162,13 @@ button {
     font-size: 16px;
     color: #fff;
     font-weight: 500;
-    margin-bottom: 20px;
+    text-align: center;
+    text-decoration: none;
     transition: 0.5s;
+    display: inline-block;
 }
-button:hover {
+
+.btn:hover, .btn-cancel:hover {
     background: #00604E;
 }
 

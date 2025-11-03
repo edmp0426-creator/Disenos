@@ -17,10 +17,9 @@
             <nav class="navbar">
                 <h1 class="tituloHeader">Crud Mestros</h1>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="home_admi.php" class="active">Home</a></li>
                     <li><a href="#">Test</a></li>
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
-                    <li><a href="#">Maestros</a></li>
                     <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
@@ -30,7 +29,7 @@
     <div class="container">
             <h2 >Lista de Mestros</h2>
             <br>
-            <button class="btn-agregar"><a class="agregar" href="agregar_alumoos.php">Agregar Alumno</a></button>
+            <button class="btn-agregar"><a class="agregar" href="agregar_maestros.php">Agregar Maestro</a></button>
             <br>
             <table class="tabla-alumnos">
                 <thead>
@@ -42,23 +41,55 @@
                         <th>Materia que imparte</th>
                         <th>Email</th>
                         <th>Contraseña</th>
+                        <th>Fecha de Creacion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Aquí se colocara el php simulacion -->
-                    <tr>
-                        <td>1</td>
-                        <td>MD2023001</td>
-                        <td>Juan Alcachofa</td>
-                        <td>Godofedo Smith</td>
-                        <td>Ingles</td>
-                        <td>juanitoAlcachof@gmail.com</td>
-                        <td>123456</td>
-                        <td>
-                            <button class="btn-editar">Editar</button>
-                            <button class="btn-eliminar">Eliminar</button>
-                        </td>
-                    </tr>
+                    <?php
+                    // Aquí iría el código PHP para obtener y mostrar los alumnos desde la base de datos
+                    $servername = "db";
+                    $username = "usuario";
+                    $password = "12345";
+                    $dbname = "socialService";
+
+                    // Crear conexión
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    // Verificar conexión
+                    if ($conn->connect_error) {
+                        die("Conexión fallida: " . $conn->connect_error);
+                    }
+
+                    // Consulta SQL para obtener los maestros
+                    $sql = "SELECT * FROM maestro";
+                    $result = $conn->query($sql);
+
+                    if(!$result){
+                        die("Consulta fallida: " . $conn->error);
+                    }
+
+                    // Mostrar los datos de cada maestro
+                    while($row = $result->fetch_assoc()) {
+                        echo "
+                        <tr>
+                            <td>$row[id]</td>
+                            <td>$row[matricula]</td>
+                            <td>$row[nombres]</td>
+                            <td>$row[apellidos]</td>
+                            <td>$row[materia]</td>
+                            <td>$row[email]</td>
+                            <td>$row[contrasena]</td>
+                            <td>$row[creat_at]</td>
+                            <td>
+                                <a class='btn-editar' href='editar_Maestro.php?id=$row[id]'>Editar</a>
+                                <a class='btn-eliminar' href='eliminar_Maestro.php?id=$row[id]'>Eliminar</a>
+                            </td>
+                        </tr>
+                        ";
+
+                    }
+
+                    ?>
                     
                 </tbody>
             </table>
