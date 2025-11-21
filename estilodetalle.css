@@ -285,3 +285,11 @@ body {
     max-width: 60px;
     float: left;
 }
+
+.form-box {
+    display: none;
+}
+
+.form-box.active {
+    display: block;
+}

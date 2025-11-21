@@ -1,0 +1,250 @@
+/* ---------- Configuración base ---------- */
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 60px;
+    padding: 20px;
+    background: #f6f8f7;
+}
+
+/* ---------- Título ---------- */
+.titulo {
+    text-align: center;
+    margin-top: 30px;
+    color: #008060;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.tab {
+    background: #e8f3ef;
+    border: none;
+    margin: 0 10px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #008060;
+    transition: 0.2s;
+}
+
+.tab.activo {
+    background: #008060;
+    color: white;
+    font-weight: bold;
+}
+
+/* ---------- Resumen general ---------- */
+.seccion-tab{
+    margin: auto;
+    width: 85%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.tarjeta {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.tarjeta h2 {
+    color: #008060;
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+/* ---------- Gráfica ---------- */
+.grafica {
+    grid-column: span 3;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* ---------- Tabla alumnos ---------- */
+.contenedor-tabla {
+    width: 90%;
+    margin: 50px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead th {
+    background: #008060;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.subencabezado th {
+    background: #007355;
+}
+
+tbody td {
+    background: white;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Valores predominantes coloreados */
+.predominante {
+    font-weight: bold;
+}
+
+.social { color: #e67e22; }
+.político { color: #c0392b; }
+.económico { color: #2980b9; }
+.estético { color: #9b59b6; }
+.religioso { color: #27ae60; }
+.teórico { color: #16a085; }
+
+/* ---------- Botones ---------- */
+.ver {
+    background: #d5ebff;
+    color: #007bff;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.eliminar {
+    background: #ffd6d6;
+    color: #ff4e4e;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cabecera {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00604E;
+    color: white;
+    padding: 10px 0;
+    text-align: left;
+    font-size: 10px;
+    margin-bottom: 20px;
+    z-index: 1000;
+}
+.tituloheader {
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+
+/* Barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Lista de enlaces */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+/* Enlaces */
+.nav-links a {
+    text-decoration: none;
+    color: #fff; /* color base del texto */
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.3s;
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+/* Enlace activo (Home) */
+.nav-links a.active {
+    background-color: #008C72;
+    color: #fff;
+}
+
+/* Efecto hover */
+.nav-links a:hover {
+    background-color: #008C72;
+    color: #fff;
+}
+
+/* Estilo especial para Logout */
+.nav-links a.logout {
+    color: #fff;
+    background-color: #00604E;
+}
+
+.nav-links a.logout:hover {
+    background-color: #008C72;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 40px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+    }
+
+}
+
+.logoescuela {
+    display: block;
+    margin: auto 10px auto 10px;
+    max-width: 60px;
+    float: left;
+}
+
+.seccion-tab {
+    display: none;
+}
+
+.seccion-tab.activa {
+    display: block;
+}
+
+#graficaAllport {
+    max-width: 600px;
+    margin: auto;
+}

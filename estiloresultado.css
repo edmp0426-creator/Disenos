@@ -1,0 +1,101 @@
+/* ---------- Configuración base ---------- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f6f8f7;
+}
+
+/* ---------- Título ---------- */
+.titulo {
+    text-align: center;
+    margin-top: 30px;
+    color: #008060;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.tab {
+    background: #e8f3ef;
+    border: none;
+    margin: 0 10px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #008060;
+    transition: 0.2s;
+}
+
+.tab.activo {
+    background: #008060;
+    color: white;
+    font-weight: bold;
+}
+
+/* ---------- Tabla alumnos ---------- */
+.contenedor-tabla {
+    width: 90%;
+    margin: 30px auto 60px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead th {
+    background: #008060;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.subencabezado th {
+    background: #007355;
+}
+
+tbody td {
+    background: white;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Colores de valores predominantes */
+.predominante {
+    font-weight: bold;
+}
+
+.social { color: #e67e22; }
+.politico { color: #c0392b; }
+.economico { color: #2980b9; }
+.estetico { color: #9b59b6; }
+.religioso { color: #27ae60; }
+.teorico { color: #16a085; }
+
+/* ---------- Botones ---------- */
+.ver {
+    background: #d5ebff;
+    color: #007bff;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.eliminar {
+    background: #ffd6d6;
+    color: #ff4e4e;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}

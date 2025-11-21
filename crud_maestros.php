@@ -15,12 +15,12 @@
         <div>
             <img src="logo.png" alt="Logo" class="logoescuela">
             <nav class="navbar">
-                <h1 class="tituloHeader">Crud Mestros</h1>
+                <h1 class="tituloHeader">Crud Maestros</h1>
                 <ul class="nav-links">
                     <li><a href="home_admi.php" class="active">Home</a></li>
-                    <li><a href="#">Test</a></li>
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
-                    <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>

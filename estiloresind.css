@@ -1,118 +1,102 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #fff;
-    color: #222;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    margin-top: 60px;
+    padding: 20px;
+    color: #333;
+    
 }
 
-.container {
+/* CONTENEDOR PRINCIPAL */
+.resultado-alumno {
+    max-width: 1000px;
+    margin: 0 auto;
     display: flex;
-    gap: 30px;
-    padding: 30px;
-    margin-top: 80px;
+    gap: 40px;
+    align-items: flex-start;
 }
 
-/* ==== COLUMNA IZQUIERDA ==== */
-.sidebar {
-    width: 250px;
+/* COLUMNA IZQUIERDA */
+.columna-info {
+    flex: 1 1 55%;
+}
+
+/* HEADER ALUMNO (flecha + nombre + fecha) */
+.header-alumno {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
+    margin-bottom: 10px;
 }
 
-.profile-card {
-    background-color: #f5f5f5;
-    padding: 30px;
-    border-radius: 6px;
-    text-align: center;
-}
-
-.profile-img {
-    width: 150px;
-    height: 150px;
+.icono-back {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-}
-
-.test-section {
-    background-color: #f5f5f5;
-    padding: 30px 20px;
-    border-radius: 6px;
-    text-align: center;
-    width: 100%;
-}
-
-.test-section h3 {
-    margin-bottom: 15px;
-}
-
-.btn-green {
-    background-color: #006b5a;
-    color: #fff;
-    border: none;
-    padding: 10px 25px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin: 8px 0;
-    font-weight: 500;
-    transition: background 0.3s;
-
-}
-
-.btn-green:disabled {
-    text-decoration: none;
-}
-
-.btn-green:hover {
-    background-color: #009379;
-}
-
-/* ==== CONTENIDO PRINCIPAL ==== */
-.main-content {
-    flex: 1;
-}
-
-.header {
+    border: 2px solid #008060;
+    color: #008060;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
-.logo {
-    width: 120px;
-}
-
-.table-container {
-    background-color: #f5f5f5;
-    border-radius: 6px;
-    padding: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: center;
-}
-
-th {
-    text-align: left;
     font-size: 18px;
+    cursor: pointer;
+}
+
+.header-alumno h1 {
+    font-size: 20px;
     font-weight: bold;
 }
 
-td {
-    border-bottom: 1px solid #ccc;
+.fecha {
+    font-size: 13px;
+    color: #555;
+    margin-top: 3px;
+}
+
+/* Línea separadora */
+.separador {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 15px 0;
+}
+
+/* Títulos de sección */
+.titulo-seccion {
+    font-size: 16px;
+    color: #008060;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    font-size: 15px;
+    font-weight: bold;
+    color: #008060;
+    margin: 15px 0 5px;
+}
+
+/* Párrafos */
+.texto {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+/* COLUMNA DERECHA: GRÁFICA */
+.columna-grafica {
+    flex: 0 0 320px;
+    height: 320px;           /* Para que el radar quede cuadrado */
+    position: relative;
+}
+
+#radarAllport {
+    width: 100%;
+    height: 100%;
 }
 
 .cabecera {
@@ -122,9 +106,9 @@ td {
     width: 100%;
     background-color: #00604E;
     color: white;
-    padding: 15px 0;
+    padding: 10px 0;
     text-align: left;
-    font-size: 15px;
+    font-size: 10px;
     margin-bottom: 20px;
     z-index: 1000;
 }
@@ -137,6 +121,7 @@ td {
     gap: 10px;
     color: white;
 }
+
 
 /* Barra de navegación */
 .navbar {
@@ -214,4 +199,8 @@ td {
     margin: auto 10px auto 10px;
     max-width: 60px;
     float: left;
+}
+
+.icono-back {
+    text-decoration: none;
 }

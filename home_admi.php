@@ -12,13 +12,12 @@
         <div>
             <img src="logo.png" alt="Logo" class="logoescuela">
             <nav class="navbar">
-                <h1 class="tituloHeader">Crud Alumnos</h1>
+                <h1 class="tituloHeader">Home</h1>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Test</a></li>
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
                     <li><a href="crud_maestros.php">Maestros</a></li>
-                    <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -120,14 +119,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Yamil Alcala</td>
-                            <td><button class="btn-green">Test name</button></td>
-                            <td><button class="btn-green">Test name</button></td>
-                        </tr>
-                        <tr>
-                            <td>Yamil Alcala</td>
-                            <td><button class="btn-green">Test name</button></td>
-                            <td><button class="btn-green">Test name</button></td>
+                            <td>Nombre del alumno</td>
+                            <td><a class="btn-green" href="res_ind.php">Resultados</a></td>
+                            <td><a class="btn-green" href="detalles_estudiante.php">Detalles</a></td>
                         </tr>
                     </tbody>
                 </table>

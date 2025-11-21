@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respuestas del Test</title>
-    <link rel="stylesheet" href="css/estilodetalle.css">
+    <link rel="stylesheet" href="estilodetalle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body>
     <header class="cabecera">
@@ -15,11 +17,11 @@
             <nav class="navbar">
                 <h1 class="tituloHeader">Detalles del Alumno</h1>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Test</a></li>
-                    <li><a href="#">Alumnos</a></li>
-                    <li><a href="#">Maestros</a></li>
-                    <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="home_admi.php" class="active">Home</a></li>
+                    <li><a href="crud_alumnos.php">Alumnos</a></li>
+                    <li><a href="crud_maestros.php">Maestros</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -38,11 +40,16 @@
     <!-- PANEL DERECHO -->
     <main class="main-content">
         <div class="header">
-        <button class="btn">Respuestas del Test</button>
-        <button class="btn"><i class="fa-solid fa-print"></i> Imprimir</button>
+        <button class="btn" onclick="descargar_pdf()"><i class="fa-solid fa-print"></i> Imprimir</button>
         </div>
 
-        <div class="table-container">
+        <div class="table-container" id ="resultados_test">
+            <div>
+                <h3>Respuestas del Alumno</h3>
+                <p><strong>Nombre:</strong> Nombre del alumno</p>
+                <p><strong>Matrícula:</strong> al019238456</p>
+                <p><strong>Correo electrónico:</strong>alumno@gmail.com</p>
+            </div>
         <!-- PARTE I -->
         <div class="section-title">Parte I</div>
 
@@ -199,6 +206,16 @@
         }
         }
     });
+    </script>
+    <script type="text/javascript">
+    function descargar_pdf() {
+        const element = document.querySelector('#resultados_test');
+        html2pdf().from(element).save();
+    }
+    function showForm(formId) {
+    document.querySelectorAll('.form-box').forEach(form => form.classList.remove('active'));
+    document.getElementById(formId).classList.add('active');
+    }
     </script>
 </body>
 </html>
