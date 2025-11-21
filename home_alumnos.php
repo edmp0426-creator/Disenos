@@ -103,7 +103,7 @@
         <p>Iniciar Test Allport</p>
         </a>
 
-        <a href="#" class="action-btn">
+        <a href="mis_resultados.php" class="action-btn">
         <img src="results.png" alt="Mis resultados">
         <p>Mis resultados</p>
         </a>

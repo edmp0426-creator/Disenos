@@ -27,7 +27,7 @@
     </header>
 
     <div class="container">
-            <h2 >Lista de Mestros</h2>
+            <h2 >Lista de Maestros</h2>
             <br>
             <button class="btn-agregar"><a class="agregar" href="agregar_maestros.php">Agregar Maestro</a></button>
             <br>
