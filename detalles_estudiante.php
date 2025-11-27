@@ -1,3 +1,50 @@
+<?php
+$servername = "db";
+$username = "usuario";
+$password = "12345";
+$dbname = "socialService";
+
+// Crear conexión
+$connection = new mysqli($servername, $username, $password, $dbname);
+
+$id = "";
+$matricula = "";
+$nombres = "";
+$apellidos = "";
+$email = "";
+$contrasena = "";
+
+$errorMessage = "";
+$successMessage = "";
+
+if ( $_SERVER['REQUEST_METHOD'] == 'GET'){
+    // GET method: Mostrar los datos del alumno
+
+    if ( !isset($_GET["id"]) ) {
+        header("location: crud_alumnos.php");
+        exit;
+    }
+
+    $id = $_GET["id"];
+
+    // Obtener los datos del alumno
+    $sql = "SELECT * FROM alumno WHERE id=$id";
+    $result = $connection->query($sql);
+    $row = $result->fetch_assoc();
+
+    if ( !$row ) {
+        header("location: crud_alumnos.php");
+        exit;
+    }
+
+    $matricula = $row["matricula"];
+    $nombres = $row["nombres"];
+    $apellidos = $row["apellidos"];
+    $email = $row["email"];
+    $contrasena = $row["contrasena"];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,7 +68,7 @@
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
                     <li><a href="crud_maestros.php">Maestros</a></li>
                     <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -31,9 +78,10 @@
     <aside class="sidebar">
         <div class="user-photo"></div>
         <div class="user-info">
-        <p><strong>Nombre:</strong><br>Nombre del alumno</p>
-        <p><strong>Matrícula:</strong><br>al019238456</p>
-        <p><strong>Correo electrónico:</strong><br>alumno@gmail.com</p>
+            
+        <p><strong>Nombre:</strong><br><?php echo $nombres; ?></p>
+        <p><strong>Matrícula:</strong><br><?php echo $matricula; ?></p>
+        <p><strong>Correo electrónico:</strong><br><?php echo $email; ?></p>
         </div>
     </aside>
 
@@ -46,9 +94,9 @@
         <div class="table-container" id ="resultados_test">
             <div>
                 <h3>Respuestas del Alumno</h3>
-                <p><strong>Nombre:</strong> Nombre del alumno</p>
-                <p><strong>Matrícula:</strong> al019238456</p>
-                <p><strong>Correo electrónico:</strong>alumno@gmail.com</p>
+                <p><strong>Nombre:</strong> <?php echo $nombres; ?></p>
+                <p><strong>Matrícula:</strong><?php echo $matricula; ?></p>
+                <p><strong>Correo electrónico:</strong><?php echo $email; ?></p>
             </div>
         <!-- PARTE I -->
         <div class="section-title">Parte I</div>

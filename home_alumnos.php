@@ -1,3 +1,49 @@
+<?php
+session_start(); // Start the session
+
+// Database credentials
+$servername = "db";
+$username = "usuario";
+$password = "12345";
+$dbname = "socialService";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if the user is logged in as a student
+if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student') {
+    $user_id = $_SESSION['user_id'];
+
+    // Fetch user details from the 'alumno' table (student)
+    $sql = "SELECT * FROM alumno WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $student = $result->fetch_assoc();
+        // Map fetched data to local variables used in the template
+        $matricula = isset($student['matricula']) ? $student['matricula'] : '';
+        $nombres   = isset($student['nombres']) ? $student['nombres'] : '';
+        $apellidos = isset($student['apellidos']) ? $student['apellidos'] : '';
+        $email     = isset($student['email']) ? $student['email'] : '';
+        // close statement
+        $stmt->close();
+    } else {
+        die("User not found.");
+    }
+} else {
+    // If the user is not logged in or is not a student
+    header('Location: login.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +60,7 @@
             <nav class="navbar">
                 <h1 class="tituloHeader">Home</h1>
                 <ul class="nav-links">
-                    <li><a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -29,71 +75,11 @@
 
 
     <div class="perfil-info">
-        <?php
-            $servername = "db";
-            $username   = "usuario";
-            $password   = "12345";
-            $dbname     = "socialService";
-
-            // Crear conexión
-            $connection = new mysqli($servername, $username, $password, $dbname);
-            if ($connection->connect_error) {
-                die("Error de conexión: " . $connection->connect_error);
-            }
-
-            // MATRÍCULA del alumno a mostrar (puedes cambiarla o tomarla de sesión)
-            $matricula = "MD2837474"; 
-
-            // Consulta de un solo alumno
-            $queried = false;
-            try {
-                $sql = "SELECT nombres, apellidos, matricula, email FROM alumnos WHERE matricula = ?";
-                $stmt = $connection->prepare($sql);
-                if ($stmt) {
-                    $stmt->bind_param("s", $matricula);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    $queried = true;
-                }
-            } catch (mysqli_sql_exception $e) {
-                // Fall back to singular table name 'alumno' if 'alumnos' doesn't match schema
-                try {
-                    $sql = "SELECT nombres, apellidos, matricula, email FROM alumno WHERE matricula = ?";
-                    $stmt = $connection->prepare($sql);
-                    if ($stmt) {
-                        $stmt->bind_param("s", $matricula);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        $queried = true;
-                    }
-                } catch (mysqli_sql_exception $e2) {
-                    // both attempts failed; log error and show friendly message
-                    error_log("DB query failed: " . $e2->getMessage());
-                    echo "<p>Error al consultar los datos del alumno. Consulte al administrador.</p>";
-                    $queried = false;
-                }
-            }
-
-            if ($queried && $result && $result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-
-                echo "<p><strong>Matrícula:</strong> " . htmlspecialchars($row['matricula']) . "</p>";
-                echo "<br>";
-                echo "<p><strong>Nombre:</strong> " 
-                    . htmlspecialchars($row['nombres']) . " " 
-                    . htmlspecialchars($row['apellidos']) . "</p>";
-
-                echo "<br>";
-                echo "<p><strong>Email:</strong> " . htmlspecialchars($row['email']) . "</p>";
-            } elseif ($queried) {
-                echo "<p>No se encontró el alumno con la matrícula especificada.</p>";
-            }
-
-            if (isset($stmt) && $stmt) {
-                $stmt->close();
-            }
-            $connection->close();
-        ?>
+        <p><strong>Matrícula: </strong><?php echo $matricula; ?></p>
+        <br>
+        <p><strong>Nombre: </strong><?php echo $nombres . " " . $apellidos; ?></p>
+        <br>
+        <p><strong>Email: </strong><?php echo $email ?></p>
     </div>
 
 

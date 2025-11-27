@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li><a href="home_admi.php" class="active">Home</a></li>
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
                     <li><a href="crud_maestros.php">Maestros</a></li>
-                    <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -155,17 +155,48 @@ document.addEventListener("DOMContentLoaded", () => {
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Alumno 1</td>
-                    <td>alumno1@gmail.com</td>
-                    <td>17/10/2025</td>
-                    <td class="predominante social">Social</td>
-                    <td>10%</td><td>12%</td><td>14%</td><td>38%</td><td>35%</td><td>10%</td>
-                    <td>
-                        <a class="ver" href="detalles_estudiante.php">Ver</a>
-                        <button class="eliminar">Eliminar</button>
-                    </td>
-                </tr>
+                <?php
+                        // Aquí iría el código PHP para obtener y mostrar los alumnos desde la base de datos
+                        $servername = "db";
+                        $username = "usuario";
+                        $password = "12345";
+                        $dbname = "socialService";
+
+                        // Crear conexión
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        // Verificar conexión
+                        if ($conn->connect_error) {
+                            die("Conexión fallida: " . $conn->connect_error);
+                        }
+
+                        // Consulta SQL para obtener los alumnos
+                        $sql = "SELECT * FROM alumno";
+                        $result = $conn->query($sql);
+
+                        if(!$result){
+                            die("Consulta fallida: " . $conn->error);
+                        }
+
+                        // Mostrar los datos de cada alumno
+                        while($row = $result->fetch_assoc()) {
+                            echo "
+                            <tr>
+                                <td>$row[nombres]</td>
+                                <td>$row[email]</td>
+                                <td>17/10/2025</td>
+                                <td class='predominante social'>Social</td>
+                                <td>10%</td><td>12%</td><td>14%</td><td>38%</td><td>35%</td><td>10%</td>
+                                <td>
+                                    <a class='ver' href='detalles_estudiante.php?id=$row[id]'>Ver</a>
+                                    <button class='eliminar'>Eliminar</button>
+                                </td>
+                            </tr>
+                            ";
+
+                        }
+
+                ?>
                 <!-- DUPLICA ESTE TR BLOQUE LAS VECES QUE NECESITES -->
             </tbody>
         </table>

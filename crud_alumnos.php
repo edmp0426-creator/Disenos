@@ -20,7 +20,7 @@
                     <li><a href="home_admi.php" class="active">Home</a></li>
                     <li><a href="crud_maestros.php">Maestros</a></li>
                     <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>

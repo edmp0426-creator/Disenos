@@ -1,3 +1,50 @@
+<?php
+$servername = "db";
+$username = "usuario";
+$password = "12345";
+$dbname = "socialService";
+
+// Crear conexión
+$connection = new mysqli($servername, $username, $password, $dbname);
+
+$id = "";
+$matricula = "";
+$nombres = "";
+$apellidos = "";
+$email = "";
+$contrasena = "";
+
+$errorMessage = "";
+$successMessage = "";
+
+if ( $_SERVER['REQUEST_METHOD'] == 'GET'){
+    // GET method: Mostrar los datos del alumno
+
+    if ( !isset($_GET["id"]) ) {
+        header("location: crud_alumnos.php");
+        exit;
+    }
+
+    $id = $_GET["id"];
+
+    // Obtener los datos del alumno
+    $sql = "SELECT * FROM alumno WHERE id=$id";
+    $result = $connection->query($sql);
+    $row = $result->fetch_assoc();
+
+    if ( !$row ) {
+        header("location: crud_alumnos.php");
+        exit;
+    }
+
+    $matricula = $row["matricula"];
+    $nombres = $row["nombres"];
+    $apellidos = $row["apellidos"];
+    $email = $row["email"];
+    $contrasena = $row["contrasena"];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,7 +63,7 @@
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
                     <li><a href="crud_maestros.php">Maestros</a></li>
                     <li><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="login.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
+                    <li><a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
         </div>
@@ -29,7 +76,7 @@
         <div class="header-alumno">
         <a href="home_admi.php" class="icono-back">←</a>
         <div>
-            <h1>Alumno 1</h1>
+            <h1><?php echo $nombres; ?></h1>
             <p class="fecha">23/10/2025</p>
         </div>
         </div>
