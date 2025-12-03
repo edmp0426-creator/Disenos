@@ -88,11 +88,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student') {
         <img src="test_Allport.png" alt="Iniciar Test Allport">
         <p>Iniciar Test Allport</p>
         </a>
-
-        <a href="mis_resultados.php" class="action-btn">
-        <img src="results.png" alt="Mis resultados">
-        <p>Mis resultados</p>
-        </a>
     </div>
     </div>
 
