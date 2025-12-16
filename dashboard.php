@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
                         // Consulta SQL para obtener los alumnos
-                        $sql = "SELECT * FROM alumno";
+                        $sql = "SELECT * FROM alumnos";
                         $result = $conn->query($sql);
 
                         if(!$result){

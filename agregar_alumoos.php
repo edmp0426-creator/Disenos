@@ -32,7 +32,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Agregar nuevo alumno a la base de datos
 
-        $sql = "INSERT INTO alumno (matricula, nombres, apellidos, email, contrasena) " .
+        $sql = "INSERT INTO alumnos (matricula, nombres, apellidos, email, contrasena) " .
                 "VALUES ('$matricula', '$nombres', '$apellidos', '$email', '$contrasena')";
         $result = $connection->query($sql);
 
@@ -92,15 +92,17 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h2>Registrar Alumno</h2>
 
                 <?php
-                if ( !empty($errorMessage) ) {
+                if (!empty($errorMessage)) {
                     echo "
-                    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                    <div class='alert alert-danger alert-dismissible fade show text-center mx-auto' role='alert' style='max-width: 500px;'>
                         <strong>$errorMessage</strong>
                         <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                     </div>
                     ";
                 }
                 ?>
+
+
 
                 <h3>Matricula</h3>
                 <input type="text" name="matricula" placeholder="Matricula" value = "<?php echo $matricula; ?>">

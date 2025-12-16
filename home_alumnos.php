@@ -20,7 +20,7 @@ if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'student') {
     $user_id = $_SESSION['user_id'];
 
     // Fetch user details from the 'alumno' table (student)
-    $sql = "SELECT * FROM alumno WHERE id = ?";
+    $sql = "SELECT * FROM alumnos WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();

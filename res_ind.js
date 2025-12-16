@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = document.getElementById("radarAllport");
 
   // Datos de ejemplo (puedes cambiarlos por los valores reales)
-    const datosValores = [0, 0, 0, 0, 0, 0]; 
+    const datosValores = [10, 30, 35, 50, 90, 60]; 
   // Orden: [Teórico, Económico, Estético, Social, Político, Religioso]
 
     new Chart(ctx, {

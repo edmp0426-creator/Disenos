@@ -53,6 +53,7 @@
             <nav class="navbar">
                 <h1 class="tituloHeader">Home</h1>
                 <ul class="nav-links">
+                    <li><a href="home_admi.php" class="active">Home</a></li>
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
                     <li><a href="crud_maestros.php">Maestros</a></li>
                     <li><a href="dashboard.php">Dashboard</a></li>
@@ -114,7 +115,7 @@
                         }
 
                         // Consulta SQL para obtener los alumnos
-                        $sql = "SELECT * FROM alumno";
+                        $sql = "SELECT * FROM alumnos";
                         $result = $conn->query($sql);
 
                         if(!$result){

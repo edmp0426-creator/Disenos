@@ -28,7 +28,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET'){
     $id = $_GET["id"];
 
     // Obtener los datos del alumno
-    $sql = "SELECT * FROM alumno WHERE id=$id";
+    $sql = "SELECT * FROM alumnos WHERE id=$id";
     $result = $connection->query($sql);
     $row = $result->fetch_assoc();
 

@@ -10,7 +10,7 @@
         // Crear conexión
         $conn = new mysqli($servername, $username, $password, $dbname);
 
-        $sql = "DELETE FROM alumno WHERE id=$id";
+        $sql = "DELETE FROM alumnos WHERE id=$id";
         $conn->query($sql);
 
     }

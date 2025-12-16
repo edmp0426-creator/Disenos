@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Query to check if the user is an alumno (student)
-    $sql_alumno = "SELECT * FROM alumno WHERE email = ? AND contrasena = ?";
+    $sql_alumno = "SELECT * FROM alumnos WHERE email = ? AND contrasena = ?";
     $stmt = $conn->prepare($sql_alumno);
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
