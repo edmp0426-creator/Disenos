@@ -76,10 +76,10 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
             <nav class="navbar">
                 <h1 class="tituloHeader">Registar Alumno</h1>
                 <ul class="nav-links">
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Test</a></li>
+                    <li><a href="home_admi.php" class="active">Home</a></li>
                     <li><a href="crud_alumnos.php">Alumnos</a></li>
-                    <li><a href="#">Maestros</a></li>
+                    <li><a href="crud_maestros.php">Maestros</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
                     <li><a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Cerrar sesion</a></li>
                 </ul>
             </nav>
